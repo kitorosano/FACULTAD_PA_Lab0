@@ -1,9 +1,5 @@
-//
-// Created by Mathi on 7/4/2022.
-//
-
 #include "Partida.h"
-#include "../datatypes/dtFechaHora.h"
+
 using namespace std;
 
 Partida::Partida(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador) {

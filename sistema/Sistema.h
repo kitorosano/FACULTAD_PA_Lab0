@@ -1,7 +1,3 @@
-//
-// Created by Mathi on 7/4/2022.
-//
-
 #ifndef PA_LABORATORIO0_SISTEMA_H
 #define PA_LABORATORIO0_SISTEMA_H
 
@@ -19,12 +15,12 @@ using namespace std;
 
 class Sistema {
     private:
-        vector<Partida> partidas;
+        vector<Partida *> partidas;
 
     public:
         Sistema();
         void agregarJugador(string nickname, int edad, string password);
-        void agregarVideojuego(string nombre, dtTipoJuego genero);
+        void agregarVideojuego(string nombre, TipoJuego genero);
         Jugador *obtenerJugadores(int &cantJugadores);
         Videojuego *obtenerVideojuegos(int &cantVideojuegos);
         Partida *obtenerPartidas(string videojuego, int &cantPartidas);
