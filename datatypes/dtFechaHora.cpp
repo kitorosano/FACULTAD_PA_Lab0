@@ -11,7 +11,7 @@ int dtFechaHora::getMes() {
     return this->MM;
 };
 int dtFechaHora::getAnio() {
-    return this->aaaa
+    return this->aaaa;
 };
 int dtFechaHora::getHora() {
     return this->HH;

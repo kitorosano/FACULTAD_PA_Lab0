@@ -2,6 +2,8 @@
 
 using namespace std;
 
+Partida::Partida() {}
+
 Partida::Partida(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador) {
     this->fecha = fecha;
     this->duracion = duracion;
@@ -27,6 +29,10 @@ void Partida::setJugadorIniciador(Jugador jugadorIniciador) {
 
 dtFechaHora Partida::getFecha() {
     return fecha;
+}
+
+float Partida::getDuracion() {
+    return duracion;
 }
 
 float Partida::darTotalHorasParticipantes() {

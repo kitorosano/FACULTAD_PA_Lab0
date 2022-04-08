@@ -7,20 +7,22 @@
 using namespace std;
 
 class dtFechaHora {
-private:
-    int dd, MM, aaaa, HH, mm, ss;
-public:
-    dtFechaHora();
-    dtFechaHora(int dd, int MM, int aaaa, int HH, int mm, int ss);
 
-    int getDia();
-    int getMes();
-    int getAnio();
-    int getHora();
-    int getMinuto();
-    int getSegundo();
+    private:
+        int dd, MM, aaaa, HH, mm, ss;
+    public:
+        dtFechaHora();
+        dtFechaHora(int dd, int MM, int aaaa, int HH, int mm, int ss);
 
-    string toString();
+        int getDia();
+        int getMes();
+        int getAnio();
+        int getHora();
+        int getMinuto();
+        int getSegundo();
+
+        string toString();
+
 };
 
 

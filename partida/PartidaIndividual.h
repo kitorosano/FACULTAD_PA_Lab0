@@ -10,16 +10,16 @@
 using namespace std;
 
 class PartidaIndividual : public Partida {
-private:
-    bool continuaPartidaAnterior;
-public:
-    PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior);
 
-    bool getContinuaPartidaAnterior();
-    void setContinuaPartidaAnterior(bool continuaPartidaAnterior);
+    private:
+        bool continuaPartidaAnterior;
+    public:
+        PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior);
 
-    float darTotalHorasParticipantes();
+        bool getContinuaPartidaAnterior();
+        void setContinuaPartidaAnterior(bool continuaPartidaAnterior);
 
+        float darTotalHorasParticipantes();
 
 };
 

@@ -15,14 +15,15 @@ using namespace std;
 
 class Sistema {
     private:
-        vector<Partida *> partidas;
-
+        vector<Partida*> partidas;
+        vector<Jugador*> jugadores;
+        vector<Videojuego*> videojuegos;
     public:
         Sistema();
         void agregarJugador(string nickname, int edad, string password);
         void agregarVideojuego(string nombre, TipoJuego genero);
-        Jugador *obtenerJugadores(int &cantJugadores);
-        Videojuego *obtenerVideojuegos(int &cantVideojuegos);
+        vector<Jugador*> obtenerJugadores(int &cantJugadores);
+        vector<Videojuego*> obtenerVideojuegos(int &cantVideojuegos);
         Partida *obtenerPartidas(string videojuego, int &cantPartidas);
         void iniciarPartida(string nickname, string videojuego, Partida *datos);
 };

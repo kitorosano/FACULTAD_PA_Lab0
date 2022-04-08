@@ -8,24 +8,27 @@
 using namespace std;
 
 class Partida {
-private:
-    dtFechaHora fecha;
-    float duracion;
-    Videojuego videojuego;
-    Jugador jugadorIniciador;
-public:
-    Partida();
-    Partida(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador);
 
-    dtFechaHora getFecha();
-    virtual float darTotalHorasParticipantes();
-    Videojuego getVideojuego();
-    Jugador getJugadorIniciador();
+    private:
+        dtFechaHora fecha;
+        float duracion;
+        Videojuego videojuego;
+        Jugador jugadorIniciador;
+    public:
+        Partida();
+        Partida(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador);
 
-    void setFecha(dtFechaHora fecha);
-    void setDuracion(float duracion);
-    void setVideojuego(Videojuego videojuego);
-    void setJugadorIniciador(Jugador jugadorIniciador);
+        dtFechaHora getFecha();
+        float getDuracion();
+        Videojuego getVideojuego();
+        Jugador getJugadorIniciador();;
+        virtual float darTotalHorasParticipantes();
+
+        void setFecha(dtFechaHora fecha);
+        void setDuracion(float duracion);
+        void setVideojuego(Videojuego videojuego);
+        void setJugadorIniciador(Jugador jugadorIniciador);
+
 };
 
 

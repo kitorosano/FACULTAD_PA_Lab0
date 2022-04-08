@@ -4,6 +4,7 @@ using namespace std;
 
 PartidaIndividual::PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior):Partida(fecha, duracion, videojuego, jugadorIniciador) {
     this->continuaPartidaAnterior = continuaPartidaAnterior;
+    videojuego.setTotalHorasJuego(videojuego.getTotalHorasJuego() + this->darTotalHorasParticipantes());
 }
 
 bool PartidaIndividual::getContinuaPartidaAnterior() {
@@ -15,5 +16,5 @@ void PartidaIndividual::setContinuaPartidaAnterior(bool continuaPartidaAnterior)
 }
 
 float PartidaIndividual::darTotalHorasParticipantes() {
-    //TODO
+    return this->getDuracion();
 }
