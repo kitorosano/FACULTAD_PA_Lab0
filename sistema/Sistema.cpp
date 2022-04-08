@@ -7,18 +7,28 @@ using namespace std;//
 Sistema::Sistema(){}
 
 void Sistema::agregarJugador(string nickname, int edad, string password) {
-    Jugador* jugador = new Jugador(nickname, edad, password);
     if(nickname.empty() || edad <= 0 || password.empty()){
         throw invalid_argument("Error: El jugador no puede ser creado.");
     }
+    for(Jugador* jug : jugadores) {
+        if(jug->getNickname() == nickname) {
+            throw invalid_argument("Error: El jugador ya existe.");
+        }
+    }
+    Jugador* jugador = new Jugador(nickname, edad, password);
     this->jugadores.push_back(jugador);
 }
 
 void Sistema::agregarVideojuego(string nombre, TipoJuego genero) {
-    Videojuego* videojuego = new Videojuego(nombre, genero);
     if(nombre.empty()){
         throw invalid_argument("Error: El videojuego no puede ser creado.");
     }
+    for(Videojuego* vid : videojuegos) {
+        if(vid->getNombre() == nombre) {
+            throw invalid_argument("Error: El videojuego ya existe.");
+        }
+    }
+    Videojuego* videojuego = new Videojuego(nombre, genero);
     this->videojuegos.push_back(videojuego);
 }
 

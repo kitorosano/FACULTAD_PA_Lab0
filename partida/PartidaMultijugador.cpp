@@ -20,5 +20,5 @@ vector<Jugador*> PartidaMultijugador::getJugadores() {
 }
 
 float PartidaMultijugador::darTotalHorasParticipantes() {
-    return (this->getDuracion() * static_cast< float >(this->getJugadores().size()));
+    return (this->getDuracion() * static_cast<float>(this->getJugadores().size()));
 }

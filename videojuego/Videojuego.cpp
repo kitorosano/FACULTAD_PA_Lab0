@@ -5,6 +5,7 @@ Videojuego::Videojuego() {}
 Videojuego::Videojuego(string nombre, TipoJuego genero) {
     this->nombre = nombre;
     this->genero = genero;
+    this->totalHorasJuego = 0;
 }
 
 Videojuego::~Videojuego() {}
