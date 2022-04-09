@@ -13,13 +13,12 @@
 using namespace std;
 
 class PartidaMultijugador : public Partida {
-
     private:
         bool transmitidaEnVivo;
         vector<Jugador *> jugadores;
+        
     public:
-        PartidaMultijugador(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador,
-                            bool transmitidaEnVivo, vector<Jugador *> jugadores);
+        PartidaMultijugador(float duracion, bool transmitidaEnVivo, vector<Jugador *> jugadores);
 
         void setTransmitidaEnVivo(bool transmitidaEnVivo);
 

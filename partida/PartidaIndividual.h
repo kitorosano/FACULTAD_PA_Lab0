@@ -17,7 +17,7 @@ private:
 public:
     PartidaIndividual();
     PartidaIndividual(const PartidaIndividual& orig);
-    PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior);
+    PartidaIndividual(float duracion, bool continuaPartidaAnterior);
     ~PartidaIndividual();
 
     bool getContinuaPartidaAnterior();

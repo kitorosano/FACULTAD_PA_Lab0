@@ -2,7 +2,7 @@
 
 using namespace std;
 
-PartidaMultijugador::PartidaMultijugador(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool transmitidaEnVivo, vector<Jugador*> jugadores):Partida(fecha, duracion, videojuego, jugadorIniciador) {
+PartidaMultijugador::PartidaMultijugador(float duracion, bool transmitidaEnVivo, vector<Jugador*> jugadores):Partida(duracion) {
     this->transmitidaEnVivo = transmitidaEnVivo;
     videojuego.setTotalHorasJuego(videojuego.getTotalHorasJuego() + this->darTotalHorasParticipantes());
 }
