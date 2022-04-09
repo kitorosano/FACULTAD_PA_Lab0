@@ -14,9 +14,10 @@ class Partida {
         float duracion;
         Videojuego videojuego;
         Jugador jugadorIniciador;
+        
     public:
         Partida();
-        Partida(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador);
+        Partida(float duracion);
 
         dtFechaHora getFecha();
         float getDuracion();

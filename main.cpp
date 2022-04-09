@@ -6,6 +6,7 @@
 #include "sistema/Sistema.h"
 #include "partida/Partida.h"
 #include "partida/PartidaIndividual.h"
+#include "partida/PartidaMultijugador.h"
 
 using namespace std;
 
@@ -21,22 +22,22 @@ void testing(){
     sistema->agregarJugador("Maria", 19, "123456");
     vector<Jugador *> jugadores = sistema->obtenerJugadores(cantJugadores);
 
-    sistema->agregarVideojuego("Counter Strike: Global Offensive", TipoJuego_str[TipoJuego::Disparos]);
-    sistema->agregarVideojuego("Fifa 22", TipoJuego_str[TipoJuego::Deportes]);
-    sistema->agregarVideojuego("Gran Turismo 5", TipoJuego_str[TipoJuego::Disparos]);
-    sistema->agregarVideojuego("Mario Kart 8", TipoJuego_str[TipoJuego::Disparos]);
-    sistema->agregarVideojuego("Super Mario Bros", TipoJuego_str[TipoJuego::Aventura]);
+    //TEST VIDEOJUEGO
+    sistema->agregarVideojuego("Counter Strike: Global Offensive", TipoJuego::Disparos);
+    sistema->agregarVideojuego("Fifa 22", TipoJuego::Deportes);
+    sistema->agregarVideojuego("Gran Turismo 5", TipoJuego::Disparos);
+    sistema->agregarVideojuego("Mario Kart 8", TipoJuego::Disparos);
+    sistema->agregarVideojuego("Super Mario Bros", TipoJuego::Aventura);
     vector<Videojuego *> videojuegos = sistema->obtenerVideojuegos(cantVideojuegos);
-
-    auto fecha = new dtFechaHora(1, 1, 2018, 1, 1, 1);
-    float duracion = 2.0;
-
-    Videojuego *v1 = videojuegos[0];
-    Jugador *j1 = jugadores[0];
-
-    //PartidaIndividual partida = new PartidaIndividual(fecha, duracion, j1, v1, true);
-
-
+    
+    // TEST PARTIDAS
+    Partida* partidaI = new PartidaIndividual(2.0, true);
+    sistema->iniciarPartida("Juan", "Fifa 22",partidaI);
+  
+    vector<Jugador*> jugadoresPartida = {jugadores[1], jugadores[3]};
+    Partida* partidaM = new PartidaMultijugador(2.0, false, jugadoresPartida);
+    sistema->iniciarPartida("Juan", "Mario Kart8",partidaM);
+  
     cout<<"Jugadores: "<<endl;
     for (Jugador* jugador : jugadores) {
         cout<<"Nickname: "<<jugador->getNickname()<<" | Edad: "<<jugador->getEdad()<<" | Password: "<<jugador->getPassword()<<endl;
@@ -53,7 +54,7 @@ void testing(){
 
 int main() {
 
-
+  
     testing();
     return 0;
 }

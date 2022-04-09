@@ -6,8 +6,7 @@ PartidaIndividual::PartidaIndividual() {}
 
 PartidaIndividual::PartidaIndividual(const PartidaIndividual &orig) {}
 
-PartidaIndividual::PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior)
-: Partida(fecha, duracion, videojuego, jugadorIniciador) {
+PartidaIndividual::PartidaIndividual(float duracion, bool continuaPartidaAnterior) : Partida(duracion) {
     this->continuaPartidaAnterior = continuaPartidaAnterior;
     videojuego.setTotalHorasJuego(videojuego.getTotalHorasJuego() + this->darTotalHorasParticipantes());
 }

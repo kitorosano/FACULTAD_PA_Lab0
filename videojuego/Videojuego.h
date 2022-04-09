@@ -11,11 +11,11 @@ class Videojuego {
 
     private:
         string nombre;
-        string genero;
+        TipoJuego genero;
         long totalHorasJuego;
     public:
         Videojuego();
-        Videojuego(string nombre, string genero);
+        Videojuego(string nombre, TipoJuego genero);
         ~Videojuego();
         string getNombre();
         string getGenero();

@@ -19,10 +19,11 @@ class Sistema {
         vector<Partida*> partidas;
         vector<Jugador*> jugadores;
         vector<Videojuego*> videojuegos;
+        
     public:
         Sistema();
         void agregarJugador(string nickname, int edad, string password);
-        void agregarVideojuego(string nombre, string genero);
+        void agregarVideojuego(string nombre, TipoJuego genero);
         vector<Jugador*> obtenerJugadores(int &cantJugadores);
         vector<Videojuego*> obtenerVideojuegos(int &cantVideojuegos);
         vector<Partida*> obtenerPartidas(string videojuego, int &cantPartidas);
