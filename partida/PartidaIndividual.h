@@ -1,7 +1,7 @@
 #ifndef PA_LABORATORIO0_PARTIDAINDIVIDUAL_H
 #define PA_LABORATORIO0_PARTIDAINDIVIDUAL_H
 
-
+#include <iostream>
 #include "Partida.h"
 #include "../datatypes/dtFechaHora.h"
 #include "../jugador/Jugador.h"
@@ -11,17 +11,19 @@ using namespace std;
 
 class PartidaIndividual : public Partida {
 
-    private:
-        bool continuaPartidaAnterior;
-    public:
-        PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior);
+private:
+    bool continuaPartidaAnterior;
 
-        bool getContinuaPartidaAnterior();
-        void setContinuaPartidaAnterior(bool continuaPartidaAnterior);
+public:
+    PartidaIndividual();
+    PartidaIndividual(const PartidaIndividual& orig);
+    PartidaIndividual(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador, bool continuaPartidaAnterior);
+    ~PartidaIndividual();
 
-        float darTotalHorasParticipantes();
+    bool getContinuaPartidaAnterior();
+    void setContinuaPartidaAnterior(bool continuaPartidaAnterior);
+
+    float darTotalHorasParticipantes();
 
 };
-
-
 #endif //PA_LABORATORIO0_PARTIDAINDIVIDUAL_H

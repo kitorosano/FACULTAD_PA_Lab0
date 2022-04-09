@@ -2,24 +2,26 @@
 #define PA_LABORATORIO0_VIDEOJUEGO_H
 #include <string>
 
-using namespace std;
-enum class TipoJuego {Accion, Disparos, Estrategia, Simulacion, Deportes, Aventura, Carreras};
 
+enum TipoJuego { Accion, Disparos, Estrategia, Simulacion, Deportes, Aventura, Carreras, Plataformas };
+static const char* TipoJuego_str[] = {"Accion", "Disparos", "Estrategia", "Simulacion", "Deportes", "Aventura", "Carreras", "Plataformas"};
+
+using namespace std;
 class Videojuego {
 
     private:
         string nombre;
-        TipoJuego genero;
+        string genero;
         long totalHorasJuego;
     public:
         Videojuego();
-        Videojuego(string nombre, TipoJuego genero);
+        Videojuego(string nombre, string genero);
         ~Videojuego();
         string getNombre();
-        TipoJuego getGenero();
+        string getGenero();
         long getTotalHorasJuego();
         void setNombre(string nombre);
-        void setGenero(TipoJuego genero);
+        void setGenero(string genero);
         void setTotalHorasJuego(long totalHorasJuego);
 
 };

@@ -2,7 +2,7 @@
 
 Videojuego::Videojuego() {}
 
-Videojuego::Videojuego(string nombre, TipoJuego genero) {
+Videojuego::Videojuego(string nombre, string genero) {
     this->nombre = nombre;
     this->genero = genero;
     this->totalHorasJuego = 0;
@@ -14,7 +14,7 @@ string Videojuego::getNombre() {
     return this->nombre;
 }
 
-TipoJuego Videojuego::getGenero() {
+string Videojuego::getGenero() {
     return this->genero;
 }
 
@@ -26,7 +26,7 @@ void Videojuego::setNombre(string nombre) {
     this->nombre = nombre;
 }
 
-void Videojuego::setGenero(TipoJuego genero) {
+void Videojuego::setGenero(string genero) {
     this->genero = genero;
 }
 

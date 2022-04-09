@@ -19,7 +19,7 @@ void Sistema::agregarJugador(string nickname, int edad, string password) {
     this->jugadores.push_back(jugador);
 }
 
-void Sistema::agregarVideojuego(string nombre, TipoJuego genero) {
+void Sistema::agregarVideojuego(string nombre, string genero) {
     if(nombre.empty()){
         throw invalid_argument("Error: El videojuego no puede ser creado.");
     }
@@ -40,4 +40,26 @@ vector<Jugador*> Sistema::obtenerJugadores(int &cantJugadores) {
 vector<Videojuego*> Sistema::obtenerVideojuegos(int &cantVideojuegos) {
     cantVideojuegos = this->videojuegos.size();
     return this->videojuegos;
+}
+
+vector<Partida*> Sistema::obtenerPartidas(string Videojuego, int &cantPartidas) {
+    cantPartidas = this->partidas.size();
+    return this->partidas;
+}
+
+void Sistema::iniciarPartida(string nickname, string videojuego, Partida *datos) {
+    if (nickname.empty() || videojuego.empty()) {
+        throw invalid_argument("Error: La partida no puede ser creada.");
+    }
+    for (Jugador *jug: jugadores) {
+        if (jug->getNickname() != nickname) {
+            throw invalid_argument("Error: El jugador no existe.");
+        }
+    }
+    for (Videojuego *vid: videojuegos) {
+        if (vid->getNombre() != videojuego) {
+            throw invalid_argument("Error: El videojuego no existe.");
+        }
+    }
+    this->partidas.push_back(datos);
 }

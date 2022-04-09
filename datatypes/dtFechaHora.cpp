@@ -23,4 +23,6 @@ int dtFechaHora::getSegundo() {
     return this->ss;
 };
 
-string dtFechaHora::toString() {};
+string dtFechaHora::toString() {
+    return "hola";
+};
