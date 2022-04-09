@@ -38,8 +38,8 @@ Jugador Partida::getJugadorIniciador() {
 
 string Partida::toString() {
     stringstream ss;
-    ss << "Fecha: " << getFecha().toString() << endl;
-    ss << "Duracion: " << getDuracion() << "hrs"<< endl;
-    ss << "Jugador iniciador: " << getJugadorIniciador().toString() << endl;
+    ss<<"\t\t"<<"Fecha: " << getFecha().toString()<<endl;
+    ss<<"\t\t"<<"Duracion: " << getDuracion()<<" horas"<<endl;
+    ss<<"\t\t"<<"Jugador iniciador: "<<getJugadorIniciador().getNickname()<<endl;
     return ss.str();
 }

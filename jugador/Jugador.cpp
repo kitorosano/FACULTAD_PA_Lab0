@@ -1,8 +1,4 @@
 #include "Jugador.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sstream>
 
 using namespace std;
 
@@ -41,5 +37,5 @@ int Jugador::getEdad() {
 }
 
 string Jugador::toString() {
-    return "=| Nickname: " + getNickname() + "| Edad: " + to_string(getEdad()) + "| Password: " + getPassword();
+    return "- Nickname: " + getNickname() + " | Edad: " + to_string(getEdad()) + " | Password: " + getPassword();
 }

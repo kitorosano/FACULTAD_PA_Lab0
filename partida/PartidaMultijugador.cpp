@@ -5,6 +5,7 @@ using namespace std;
 
 PartidaMultijugador::PartidaMultijugador(float duracion, bool transmitidaEnVivo, vector<Jugador*> jugadores):Partida(duracion) {
     this->transmitidaEnVivo = transmitidaEnVivo;
+    this->jugadores = jugadores;
 }
 
 bool PartidaMultijugador::getTransmitidaEnVivo() {
@@ -25,11 +26,11 @@ float PartidaMultijugador::darTotalHorasParticipantes() {
 
 string PartidaMultijugador::toString() {
     stringstream ss;
-    ss << Partida::toString();
-    ss << "Transmitida en vivo: " << (getTransmitidaEnVivo() ? "Si" : "No") << endl;
-    ss << "Jugadores: " << endl;
-    for (auto jugador : getJugadores()) {
-        ss << jugador->toString() << endl;
+    ss<<Partida::toString();
+    ss<<"\t\t"<<"Transmitida en vivo: "<<(getTransmitidaEnVivo() ? "Si" : "No")<<endl;
+    ss<<"\t\t"<<"Jugadores: "<<endl;
+    for (Jugador* jugador : getJugadores()) {
+        ss<<"\t\t\t - "<<jugador->getNickname()<<endl;
     }
     return ss.str();
 }

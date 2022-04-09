@@ -50,8 +50,8 @@ void Videojuego::setTotalHorasJuego(long totalHorasJuego) {
 
 string Videojuego::toString() {
     stringstream ss;
-    ss << "Nombre: " << getNombre() << endl;
-    ss << "Genero: " << getGenero() << endl;
-    ss << "Total de horas jugadas: " << getTotalHorasJuego() << endl;
+    ss<<"Nombre: "<< getNombre()<<endl;
+    ss<<"Genero: "<< getGenero()<<endl;
+    ss<<"Total de horas jugadas: "<<getTotalHorasJuego()<<endl;
     return ss.str();
 }

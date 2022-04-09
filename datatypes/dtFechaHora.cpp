@@ -1,28 +1,19 @@
+#include <iomanip>
 #include "dtFechaHora.h"
 
-dtFechaHora::dtFechaHora() {}
-
-dtFechaHora::dtFechaHora(int dd, int MM, int aaaa, int HH, int mm, int ss) {};
-
-int dtFechaHora::getDia() {
-    return this->dd;
-};
-int dtFechaHora::getMes() {
-    return this->MM;
-};
-int dtFechaHora::getAnio() {
-    return this->aaaa;
-};
-int dtFechaHora::getHora() {
-    return this->HH;
-};
-int dtFechaHora::getMinuto() {
-    return this->mm;
-};
-int dtFechaHora::getSegundo() {
-    return this->ss;
-};
+dtFechaHora::dtFechaHora() {
+    stringstream ssDate;
+    stringstream ssTime;
+    auto t = std::time(nullptr);
+    auto tm = *localtime(&t);
+    ssDate<<put_time(&tm, "%d-%m-%Y");
+    ssTime<<put_time(&tm, "%H:%M:%S");
+    this->date = ssDate.str();
+    this->time = ssTime.str();
+}
 
 string dtFechaHora::toString() {
-    return "hola";
+    stringstream ss;
+    ss<<this->date<<" "<<this->time;
+    return ss.str();
 };

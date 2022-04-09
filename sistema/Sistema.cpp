@@ -9,14 +9,14 @@ using namespace std;//
 Sistema::Sistema(){}
 
 void Sistema::agregarJugador(string nickname, int edad, string password) {
-    if(nickname.empty() || edad <= 0 || password.empty()){
+    if(nickname.empty() || edad <= 0 || password.empty())
         throw invalid_argument("Error: El jugador no puede ser creado.");
-    }
+
     for(Jugador* jug : jugadores) {
-        if(jug->getNickname() == nickname) {
+        if(jug->getNickname() == nickname)
             throw invalid_argument("Error: El jugador ya existe.");
-        }
     }
+
     Jugador* jugador = new Jugador(nickname, edad, password);
     this->jugadores.push_back(jugador);
 }
@@ -35,31 +35,31 @@ void Sistema::agregarVideojuego(string nombre, TipoJuego genero) {
 }
 
 vector<Jugador*> Sistema::obtenerJugadores(int &cantJugadores) {
-  vector<Jugador*> vj;
-  if(cantJugadores<0 && cantJugadores > jugadores.size())
-    throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
-  
-  vj = jugadores;
-  vj.resize(cantJugadores);
-  return vj;
+    vector<Jugador*> vectorJugadores;
+
+    if(cantJugadores<0 && cantJugadores > jugadores.size())
+        throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
+
+    vectorJugadores = jugadores;
+    vectorJugadores.resize(cantJugadores);
+    return vectorJugadores;
 }
 
 vector<Videojuego*> Sistema::obtenerVideojuegos(int &cantVideojuegos) {
-  vector<Videojuego*> vv;
-  if(cantVideojuegos<0 && cantVideojuegos > videojuegos.size())
-    throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
+    vector<Videojuego*> vectorVideojuegos;
+
+    if(cantVideojuegos < 0 && cantVideojuegos > videojuegos.size())
+        throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
   
-  for(auto videojuego : videojuegos) { //VIDEO JUEGO A OBTENER
-    auto horasASumar = 0; //contador para la suma
-    for (auto partida : videojuego->getPartidas()) //RECORRO LAS PARTIDAS DEL JUEGO PARA SUMAR LAS HORAS
-      horasASumar += partida->darTotalHorasParticipantes();// sumo las horas de las partidas
-    videojuego->setTotalHorasJuego(horasASumar);  //seteo la variable del videojuego (total horas)
-    
-    vv.push_back(videojuego);
-  }
-  
-  vv.resize(cantVideojuegos); //limito el vector a la cantidad especificada
-  return vv;
+    for(Videojuego* videojuego : videojuegos) { //VIDEO JUEGO A OBTENER
+        auto horasASumar = 0; //contador para la suma
+        for (Partida* partida : videojuego->getPartidas()) //RECORRO LAS PARTIDAS DEL JUEGO PARA SUMAR LAS HORAS
+            horasASumar += partida->darTotalHorasParticipantes();// sumo las horas de las partidas
+        videojuego->setTotalHorasJuego(horasASumar);  //seteo la variable del videojuego (total horas)
+        vectorVideojuegos.push_back(videojuego);
+    }
+    vectorVideojuegos.resize(cantVideojuegos); //limito el vector a la cantidad especificada
+    return vectorVideojuegos;
 }
 
 vector<Partida*> Sistema::obtenerPartidas(string videojuego, int &cantPartidas) {
@@ -103,7 +103,7 @@ void Sistema::iniciarPartida(string nickname, string videojuego, Partida *datos)
         if (vid->getNombre() == videojuego) {
       
           // SET TOTAL HORAS PARTICIPANTES
-          dtFechaHora* fechaHora = new dtFechaHora(2022, 3, 31, 23, 59, 59); //TODO: CREAR FECHA ACTUAL
+          dtFechaHora* fechaHora = new dtFechaHora(); //TODO: CREAR FECHA ACTUAL
       datos->setFecha(*fechaHora); //fecha de inicio
   
   
