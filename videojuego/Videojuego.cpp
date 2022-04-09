@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Videojuego.h"
 
 Videojuego::Videojuego() {}
@@ -22,14 +23,35 @@ long Videojuego::getTotalHorasJuego() {
     return this->totalHorasJuego;
 }
 
+vector<Partida*> Videojuego::getPartidas() {
+    return this->partidas;
+}
+
+int Videojuego::getCantidadPartidas() {
+    return this->partidas.size();
+}
+
 void Videojuego::setNombre(string nombre) {
     this->nombre = nombre;
 }
 
-void Videojuego::setGenero(string genero) {
+void Videojuego::setGenero(TipoJuego genero) {
     this->genero = genero;
+}
+
+void Videojuego::guardarPartida(Partida* partida) {
+  //seteo las horas
+  this->partidas.push_back(partida);
 }
 
 void Videojuego::setTotalHorasJuego(long totalHorasJuego) {
     this->totalHorasJuego = totalHorasJuego;
+}
+
+string Videojuego::toString() {
+    stringstream ss;
+    ss << "Nombre: " << getNombre() << endl;
+    ss << "Genero: " << getGenero() << endl;
+    ss << "Total de horas jugadas: " << getTotalHorasJuego() << endl;
+    return ss.str();
 }

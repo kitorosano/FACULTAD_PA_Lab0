@@ -16,7 +16,6 @@ using namespace std;
 class Sistema {
 
     private:
-        vector<Partida*> partidas;
         vector<Jugador*> jugadores;
         vector<Videojuego*> videojuegos;
         

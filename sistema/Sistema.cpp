@@ -2,6 +2,8 @@
 // Created by Mathi on 7/4/2022.
 
 #include "Sistema.h"
+#include "../partida/PartidaIndividual.h"
+
 using namespace std;//
 
 Sistema::Sistema(){}
@@ -37,12 +39,9 @@ vector<Jugador*> Sistema::obtenerJugadores(int &cantJugadores) {
   if(cantJugadores<0 && cantJugadores > jugadores.size())
     throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
   
-  for(int i=0;i< cantJugadores;i++)
-    vj.push_back(jugadores[i]);
-  
+  vj = jugadores;
+  vj.resize(cantJugadores);
   return vj;
-    //cantJugadores = this->jugadores.size();
-    //return this->jugadores;
 }
 
 vector<Videojuego*> Sistema::obtenerVideojuegos(int &cantVideojuegos) {
@@ -50,60 +49,67 @@ vector<Videojuego*> Sistema::obtenerVideojuegos(int &cantVideojuegos) {
   if(cantVideojuegos<0 && cantVideojuegos > videojuegos.size())
     throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
   
-  for(int i=0;i< cantVideojuegos;i++)
-    vv.push_back(videojuegos[i]);
+  for(auto videojuego : videojuegos) { //VIDEO JUEGO A OBTENER
+    auto horasASumar = 0; //contador para la suma
+    for (auto partida : videojuego->getPartidas()) //RECORRO LAS PARTIDAS DEL JUEGO PARA SUMAR LAS HORAS
+      horasASumar += partida->darTotalHorasParticipantes();// sumo las horas de las partidas
+    videojuego->setTotalHorasJuego(horasASumar);  //seteo la variable del videojuego (total horas)
+    
+    vv.push_back(videojuego);
+  }
   
+  vv.resize(cantVideojuegos); //limito el vector a la cantidad especificada
   return vv;
-    //cantVideojuegos = this->videojuegos.size();
-    //return this->videojuegos;
 }
 
 vector<Partida*> Sistema::obtenerPartidas(string videojuego, int &cantPartidas) {
-  vector<Partida*> vp;
-  if(cantPartidas<0 && cantPartidas > partidas.size())
-    throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
+  vector<Partida*> vp; //vector auxiliar
   
-  
-  for(int i=0;i< cantPartidas;i++){
-    if(partidas[i]->getVideojuego().getNombre() == videojuego)
-      vp.push_back(partidas[i]);
+  if(videojuego.empty())
+    throw invalid_argument("Error: El videojuego no existe.");
+
+  for(auto videojuegoAux : videojuegos) { //BUSCAR EL VIDEOJUEGO
+    if(videojuegoAux->getNombre() == videojuego) { //OBTENER LAS PARTIDAS DEL VIDEOJUEGO CUYO NOMBRE SEA IGUAL
+      
+      if(cantPartidas<0 && cantPartidas > videojuegoAux->getPartidas().size()) //VERIFICO EL PARAMETRO cantPartidas
+        throw invalid_argument("Error: La cantidad especificada de videojuegos no se puede obtener.");
+     
+      vp = videojuegoAux->getPartidas();//obtengo las partidas del videojuego
+    }
   }
   
+  vp.resize(cantPartidas); //limito el vector a la cantidad especificada
   return vp;
-    //cantPartidas = this->partidas.size();
-    //return this->partidas;
 }
 
 void Sistema::iniciarPartida(string nickname, string videojuego, Partida *datos) { //datos = Partida {duracion, continuacion/transmision y jugadores}
   //VERIFICAR DATOS
-    if (nickname.empty() || videojuego.empty()) {
-        throw invalid_argument("Error: La partida no puede ser creada.");
-    }
-    
-    bool existeJugador = false;
-    for (Jugador *jug: jugadores)
-        if (jug->getNickname() == nickname) {
-          datos->setJugadorIniciador(*jug); //seteo jugador iniciador
-          existeJugador = true;
-        }
-    if (!existeJugador)
-        throw invalid_argument("Error: El jugador no existe.");
-    
-    bool existeVideoJuego = false;
+  if (nickname.empty() || videojuego.empty())
+    throw invalid_argument("Error: La partida no puede ser creada.");
+  
+  
+  bool existeJugador = false;
+  for (Jugador *jug: jugadores)
+      if (jug->getNickname() == nickname) {
+        datos->setJugadorIniciador(*jug); //seteo jugador iniciador
+        existeJugador = true;
+      }
+  if (!existeJugador)
+      throw invalid_argument("Error: El jugador no existe.");
+  
+  
+  bool existeVideoJuego = false;
       for (Videojuego *vid: videojuegos)
-          if (vid->getNombre() == videojuego) {
-            datos->setVideojuego(*vid); //setedo videojuego
-            existeVideoJuego = true;
-          }
-      if (!existeVideoJuego)
-          throw invalid_argument("Error: El videojuego no existe.");
+        if (vid->getNombre() == videojuego) {
       
-    // SET TOTAL HORAS PARTICIPANTES
-    
-    
-      
-    dtFechaHora* fechaHora = new dtFechaHora(2022, 3, 31, 23, 59, 59); //TODO: CREAR FECHA ACTUAL
-    datos->setFecha(*fechaHora); //fecha de inicio
-    
-    this->partidas.push_back(datos); //REGISTRAR PARTIDA
+          // SET TOTAL HORAS PARTICIPANTES
+          dtFechaHora* fechaHora = new dtFechaHora(2022, 3, 31, 23, 59, 59); //TODO: CREAR FECHA ACTUAL
+      datos->setFecha(*fechaHora); //fecha de inicio
+  
+  
+      vid->guardarPartida(datos); // REGISTRAR PARTIDA
+      existeVideoJuego = true;
+    }
+  if (!existeVideoJuego)
+    throw invalid_argument("Error: El videojuego no existe.");
 }

@@ -1,14 +1,12 @@
 #include "Partida.h"
+#include <sstream>
 
 using namespace std;
 
 Partida::Partida() {}
 
-Partida::Partida(dtFechaHora fecha, float duracion, Videojuego videojuego, Jugador jugadorIniciador) {
-    this->fecha = fecha;
+Partida::Partida(float duracion) {
     this->duracion = duracion;
-    this->videojuego = videojuego;
-    this->jugadorIniciador = jugadorIniciador;
 }
 
 void Partida::setFecha(dtFechaHora fecha) {
@@ -17,10 +15,6 @@ void Partida::setFecha(dtFechaHora fecha) {
 
 void Partida::setDuracion(float duracion) {
     this->duracion = duracion;
-}
-
-void Partida::setVideojuego(Videojuego videojuego) {
-    this->videojuego = videojuego;
 }
 
 void Partida::setJugadorIniciador(Jugador jugadorIniciador) {
@@ -38,12 +32,14 @@ float Partida::getDuracion() {
 float Partida::darTotalHorasParticipantes() {
     return duracion;
 }
-
-Videojuego Partida::getVideojuego() {
-    return videojuego;
-}
-
 Jugador Partida::getJugadorIniciador() {
     return jugadorIniciador;
 }
 
+string Partida::toString() {
+    stringstream ss;
+    ss << "Fecha: " << getFecha().toString() << endl;
+    ss << "Duracion: " << getDuracion() << "hrs"<< endl;
+    ss << "Jugador iniciador: " << getJugadorIniciador().toString() << endl;
+    return ss.str();
+}

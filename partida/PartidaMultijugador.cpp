@@ -1,10 +1,10 @@
+#include <sstream>
 #include "PartidaMultijugador.h"
 
 using namespace std;
 
 PartidaMultijugador::PartidaMultijugador(float duracion, bool transmitidaEnVivo, vector<Jugador*> jugadores):Partida(duracion) {
     this->transmitidaEnVivo = transmitidaEnVivo;
-    videojuego.setTotalHorasJuego(videojuego.getTotalHorasJuego() + this->darTotalHorasParticipantes());
 }
 
 bool PartidaMultijugador::getTransmitidaEnVivo() {
@@ -21,4 +21,15 @@ vector<Jugador*> PartidaMultijugador::getJugadores() {
 
 float PartidaMultijugador::darTotalHorasParticipantes() {
     return (this->getDuracion() * static_cast<float>(this->getJugadores().size()));
+}
+
+string PartidaMultijugador::toString() {
+    stringstream ss;
+    ss << Partida::toString();
+    ss << "Transmitida en vivo: " << (getTransmitidaEnVivo() ? "Si" : "No") << endl;
+    ss << "Jugadores: " << endl;
+    for (auto jugador : getJugadores()) {
+        ss << jugador->toString() << endl;
+    }
+    return ss.str();
 }

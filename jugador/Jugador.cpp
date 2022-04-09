@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sstream>
 
 using namespace std;
 
@@ -39,3 +40,6 @@ int Jugador::getEdad() {
     return this->edad;
 }
 
+string Jugador::toString() {
+    return "=| Nickname: " + getNickname() + "| Edad: " + to_string(getEdad()) + "| Password: " + getPassword();
+}

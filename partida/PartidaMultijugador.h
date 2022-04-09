@@ -28,6 +28,7 @@ class PartidaMultijugador : public Partida {
 
         float darTotalHorasParticipantes() override;
 
+        string toString() override;
 };
 
 
