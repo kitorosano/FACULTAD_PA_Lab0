@@ -11,6 +11,7 @@ class View {
     public:
         void menu();
         void agregarJugadorView(Sistema* sistema);
+        void agregarVideojuegoView(Sistema* sistema);
 };
 
 

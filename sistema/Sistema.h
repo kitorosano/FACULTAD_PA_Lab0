@@ -26,6 +26,7 @@ class Sistema {
         vector<Jugador*> obtenerJugadores(int &cantJugadores);
         vector<Jugador*> obtenerJugadoresTotal();
         vector<Videojuego*> obtenerVideojuegos(int &cantVideojuegos);
+        vector<Videojuego*> obtenerVideojuegosTotal();
         vector<Partida*> obtenerPartidas(string videojuego, int &cantPartidas);
         void iniciarPartida(string nickname, string videojuego, Partida *datos);
 

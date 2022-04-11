@@ -66,6 +66,10 @@ vector<Videojuego*> Sistema::obtenerVideojuegos(int &cantVideojuegos) {
     return vectorVideojuegos;
 }
 
+vector<Videojuego*> Sistema::obtenerVideojuegosTotal() {
+    return this->videojuegos;
+}
+
 vector<Partida*> Sistema::obtenerPartidas(string videojuego, int &cantPartidas) {
   vector<Partida*> vp; //vector auxiliar
   

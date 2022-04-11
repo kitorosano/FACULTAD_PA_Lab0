@@ -12,6 +12,8 @@ class Util {
     public:
         bool verificarNickname(Sistema* sistema, string nickname);
         bool verificarEdad(string edad);
+        bool verificarNombre(Sistema* sistema, string nombre);
+        bool verificarGenero(string genero);
 };
 
 

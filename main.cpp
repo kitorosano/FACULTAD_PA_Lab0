@@ -83,6 +83,9 @@ int main() {
             case 1:
                 view->agregarJugadorView(sistema);
                 break;
+            case 2:
+                view->agregarVideojuegoView(sistema);
+                break;
         }
 
     } while(opcion != 0);
