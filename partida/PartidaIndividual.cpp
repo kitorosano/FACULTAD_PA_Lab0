@@ -27,6 +27,7 @@ float PartidaIndividual::darTotalHorasParticipantes() {
 
 string PartidaIndividual::toString() {
     stringstream ss;
+    ss<<"\t\tTipo de partida: Individual"<<endl;
     ss<<Partida::toString();
     ss<<"\t\tContinuar partida: "<<(getContinuaPartidaAnterior() ? "Si" : "No")<<endl;
     return ss.str();

@@ -9,7 +9,7 @@ using namespace std;//
 Sistema::Sistema(){}
 
 void Sistema::agregarJugador(string nickname, int edad, string password) {
-    if(nickname.empty() || edad <= 0 || password.empty())
+    if(nickname.empty() || edad <= 0)
         throw invalid_argument("Error: El jugador no puede ser creado.");
 
     for(Jugador* jug : jugadores) {
@@ -17,7 +17,7 @@ void Sistema::agregarJugador(string nickname, int edad, string password) {
             throw invalid_argument("Error: El jugador ya existe.");
     }
 
-    Jugador* jugador = new Jugador(nickname, edad, password);
+    Jugador* jugador = new Jugador(nickname, edad, password.empty() ? password : "123456");
     this->jugadores.push_back(jugador);
 }
 
@@ -43,6 +43,10 @@ vector<Jugador*> Sistema::obtenerJugadores(int &cantJugadores) {
     vectorJugadores = jugadores;
     vectorJugadores.resize(cantJugadores);
     return vectorJugadores;
+}
+
+vector<Jugador*> Sistema::obtenerJugadoresTotal() {
+    return this->jugadores;
 }
 
 vector<Videojuego*> Sistema::obtenerVideojuegos(int &cantVideojuegos) {

@@ -5,6 +5,7 @@
 #include "sistema/Sistema.h"
 #include "partida/PartidaIndividual.h"
 #include "partida/PartidaMultijugador.h"
+#include "view/View.h"
 
 using namespace std;
 
@@ -44,7 +45,7 @@ void testing(){
     sistema->iniciarPartida("Pedro", "Mario Kart 8",partidaM);
   
     //TEST CONSOLA
-    int cantVideojuegos = 3;
+    int cantVideojuegos = 4;
     vector<Videojuego *> videojuegos = sistema->obtenerVideojuegos(cantVideojuegos);
     
     cout<<"Jugadores: "<<endl;
@@ -72,9 +73,18 @@ void testing(){
 }
 
 int main() {
+    int opcion;
+    Sistema* sistema = new Sistema();
+    View* view = new View();
+    do {
+        view->menu();
+        cin>>opcion;
+        switch(opcion) {
+            case 1:
+                view->agregarJugadorView(sistema);
+                break;
+        }
 
-  //TODO: agregar menu al main
-  
-    testing();
+    } while(opcion != 0);
     return 0;
 }

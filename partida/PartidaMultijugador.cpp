@@ -26,6 +26,7 @@ float PartidaMultijugador::darTotalHorasParticipantes() {
 
 string PartidaMultijugador::toString() {
     stringstream ss;
+    ss<<"\t\tTipo de partida: Multijugador "<<endl;
     ss<<Partida::toString();
     ss<<"\t\t"<<"Transmitida en vivo: "<<(getTransmitidaEnVivo() ? "Si" : "No")<<endl;
     ss<<"\t\t"<<"Jugadores: "<<endl;
