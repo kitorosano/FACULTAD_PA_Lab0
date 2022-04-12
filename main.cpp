@@ -6,6 +6,7 @@
 #include "partida/PartidaIndividual.h"
 #include "partida/PartidaMultijugador.h"
 #include "view/View.h"
+#include "util/Util.h"
 
 using namespace std;
 
@@ -73,21 +74,35 @@ void testing(){
 }
 
 int main() {
-    int opcion;
+    string opcion;
     Sistema* sistema = new Sistema();
+    Util* utilities = new Util();
     View* view = new View();
     do {
-        view->menu();
-        cin>>opcion;
-        switch(opcion) {
+        do{
+            view->menu();
+            cin>>opcion;
+        } while(!utilities->isInteger(opcion));
+        switch(stoi(opcion)) {
+            case 0:
+                break;
             case 1:
                 view->agregarJugadorView(sistema);
                 break;
             case 2:
                 view->agregarVideojuegoView(sistema);
                 break;
+            case 3:
+                view->obtenerJugadoresView(sistema);
+                break;
+            case 4:
+                view->obtenerVideojuegosView(sistema);
+                break;
+            default:
+                cout<<"Opcion invalida"<<endl;
+                break;
         }
 
-    } while(opcion != 0);
+    } while(stoi(opcion) != 0);
     return 0;
 }

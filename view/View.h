@@ -12,6 +12,8 @@ class View {
         void menu();
         void agregarJugadorView(Sistema* sistema);
         void agregarVideojuegoView(Sistema* sistema);
+        void obtenerJugadoresView(Sistema* sistema);
+        void obtenerVideojuegosView(Sistema* sistema);
 };
 
 

@@ -14,6 +14,9 @@ class Util {
         bool verificarEdad(string edad);
         bool verificarNombre(Sistema* sistema, string nombre);
         bool verificarGenero(string genero);
+        bool verificarCantidadJugadores(Sistema* sistema, string cantJugadores);
+        bool verificarCantidadVideojuegos(Sistema* sistema, string cantVideojuegos);
+        bool isInteger(string a);
 };
 
 

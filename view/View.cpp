@@ -112,3 +112,57 @@ void View::agregarVideojuegoView(Sistema *sistema) {
     cout<<"Videojuego agregado con exito!"<<endl<<endl;
     system("pause");
 }
+
+void View::obtenerJugadoresView(Sistema* sistema){
+    Util* utilities = new Util();
+    string cantidad;
+    int cant = 0;
+    do{
+        cout<<"|------------------------------------------------------|"<<endl;
+        cout<<"|                   OBTENER  JUGADORES                 |"<<endl;
+        cout<<"|------------------------------------------------------|"<<endl<<endl;
+        if(sistema->getJugadores().empty()){
+            cout<<"No hay jugadores registrados."<<endl<<endl;
+            system("pause");
+            return;
+        }
+        cout<<"Ingrese la cantidad:";
+        cin>>cantidad;
+    } while(!utilities->verificarCantidadJugadores(sistema,cantidad));
+    cout<<"|------------------------------------------------------|"<<endl;
+    cout<<"|                   OBTENER  JUGADORES                 |"<<endl;
+    cout<<"|------------------------------------------------------|"<<endl<<endl;
+    cant = stoi(cantidad);
+    for (Jugador* jugador : sistema->obtenerJugadores(cant)) {
+        cout<<jugador->toString()<<endl;
+    }
+    cout<<endl<<"|------------------------------------------------------|"<<endl<<endl;
+    system("pause");
+}
+
+void View::obtenerVideojuegosView(Sistema* sistema){
+    Util* utilities = new Util();
+    string cantidad;
+    int cant = 0;
+    do{
+        cout<<"|------------------------------------------------------|"<<endl;
+        cout<<"|                 OBTENER  VIDEOJUEGOS                 |"<<endl;
+        cout<<"|------------------------------------------------------|"<<endl<<endl;
+        if(sistema->getVideojuegos().empty()){
+            cout<<"No hay videojuegos registrados."<<endl<<endl;
+            system("pause");
+            return;
+        }
+        cout<<"Ingrese la cantidad:";
+        cin>>cantidad;
+    } while(!utilities->verificarCantidadVideojuegos(sistema,cantidad));
+    cout<<"|------------------------------------------------------|"<<endl;
+    cout<<"|                 OBTENER  VIDEOJUEGOS                 |"<<endl;
+    cout<<"|------------------------------------------------------|"<<endl<<endl;
+    cant = stoi(cantidad);
+    for (Videojuego* videojuego : sistema->obtenerVideojuegos(cant)) {
+        cout<<videojuego->toString();
+    }
+    cout<<endl<<"|------------------------------------------------------|"<<endl;
+    system("pause");
+}
