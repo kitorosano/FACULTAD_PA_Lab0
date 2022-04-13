@@ -22,8 +22,8 @@ bool Util::verificarEdad(string edad) {
     if(!this->isInteger(edad)) {
         return false;
     }
-    if(stoi(edad) <= 0) {
-        cout<<endl<<"Error: La edad no puede ser negativa."<<endl;
+    if(stoi(edad) == 0) {
+        cout<<endl<<"Error: La edad del jugador no puede ser 0."<<endl;
         return false;
     }
     return true;
@@ -58,10 +58,11 @@ bool Util::verificarCantidadJugadores(Sistema* sistema, string cantJugadores){
     if(!this->isInteger(cantJugadores)){
         return false;
     }
-    if(stoi(cantJugadores) <= 0) {
-        cout<<endl<<"Error: Debe ingresar valores positivos."<<endl;
+    if(stoi(cantJugadores) == 0){
+        cout<<endl<<"Error: La cantidad de jugadores no puede ser 0."<<endl;
         return false;
-    } else if(stoi(cantJugadores) > sistema->getJugadores().size()) {
+    }
+    if(stoi(cantJugadores) > sistema->getJugadores().size()) {
         cout<<endl<<"Error: El valor ingresado es mayor al maximo de jugadores registrados."<<endl;
         return false;
     }
@@ -72,19 +73,50 @@ bool Util::verificarCantidadVideojuegos(Sistema* sistema, string cantVideojuegos
     if(!this->isInteger(cantVideojuegos)) {
         return false;
     }
-    if(stoi(cantVideojuegos)<=0) {
-        cout<<endl<<"Error: Debe ingresar valores positivos."<<endl;
+    if(stoi(cantVideojuegos) == 0) {
+        cout<<endl<<"Error: La cantidad de videojuegos no puede ser 0."<<endl;
         return false;
-    } else if(stoi(cantVideojuegos) > sistema->getVideojuegos().size()) {
+    }
+    if(stoi(cantVideojuegos) > sistema->getVideojuegos().size()) {
         cout<<endl<<"Error: El valor ingresado es mayor al maximo de videojuegos registrados."<<endl;
         return false;
     }
     return true;
 }
 
+bool Util::verificarCantidadPartidas(Sistema* sistema, string videojuego, string cantPartidas){
+    if(!this->isInteger(cantPartidas)) {
+        return false;
+    }
+    if(stoi(cantPartidas) == 0) {
+        cout<<endl<<"Error: La cantidad de partidas no puede ser 0."<<endl;
+        return false;
+    }
+    for(Videojuego* videojuegoAux : sistema->getVideojuegos()) { //BUSCAR EL VIDEOJUEGO
+        if(videojuegoAux->getNombre() == videojuego) { //OBTENER LAS PARTIDAS DEL VIDEOJUEGO CUYO NOMBRE SEA IGUAL
+            if(stoi(cantPartidas) >  videojuegoAux->getPartidas().size()) {
+                cout<<endl<<"Error: El valor ingresado es mayor al maximo de partidas registradas."<<endl;
+                return false;
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Util::verificarVideojuego(Sistema* sistema, string videojuego) {
+    for(Videojuego* videojuegoAux : sistema->getVideojuegos()) {
+        if(videojuegoAux->getNombre() == videojuego) {
+            return true;
+        }
+    }
+    cout<<endl<<"Error: El videojuego no existe."<<endl;
+    return false;
+}
+
 bool Util::isInteger(string a) {
-    for (char const &c : a) {
-        if (std::isdigit(c) == 0){
+    for(char const &c : a) {
+        if (isdigit(c) == 0){
             cout<<endl<<"Error: Debe ingresar un numero entero positivo."<<endl;
             return false;
         }

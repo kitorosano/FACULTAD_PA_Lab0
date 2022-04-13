@@ -166,3 +166,49 @@ void View::obtenerVideojuegosView(Sistema* sistema){
     cout<<endl<<"|------------------------------------------------------|"<<endl;
     system("pause");
 }
+
+void View::obtenerPartidasView(Sistema* sistema){
+    Util* utilities = new Util();
+    string nombreVideojuego;
+    string cantidad;
+    int cant = 0;
+    do{
+        cout<<"|------------------------------------------------------|"<<endl;
+        cout<<"|                 OBTENER   PARTIDAS                   |"<<endl;
+        cout<<"|------------------------------------------------------|"<<endl<<endl;
+        if(sistema->getVideojuegos().empty()){
+            cout<<"No hay videojuegos registrados."<<endl<<endl;
+            system("pause");
+            return;
+        }
+        cout<<"Ingrese el nombre del videojuego:";
+        cin.ignore();
+        getline(cin, nombreVideojuego);
+    } while(!utilities->verificarVideojuego(sistema, nombreVideojuego));
+    do{
+        cout<<"|------------------------------------------------------|"<<endl;
+        cout<<"|                 OBTENER   PARTIDAS                   |"<<endl;
+        cout<<"|------------------------------------------------------|"<<endl<<endl;
+        cout<<"Videojuego: "<<nombreVideojuego<<endl<<endl;
+        for(Videojuego* videojuego : sistema->getVideojuegos()){
+            if(videojuego->getNombre() == nombreVideojuego){
+                if(videojuego->getPartidas().empty()){
+                    cout<<"No hay partidas registradas."<<endl<<endl;
+                    system("pause");
+                    return;
+                }
+                cout<<"Ingrese la cantidad de partidas:";
+                cin>>cantidad;
+            }
+        }
+    } while(!utilities->verificarCantidadPartidas(sistema, nombreVideojuego, cantidad));
+    cant = stoi(cantidad);
+    vector<Partida*> partidas = sistema->obtenerPartidas(nombreVideojuego, cant);
+    cout<<"\t"<<"Partidas: "<<endl;
+    cout<<"\t\t--------------------------------------"<<endl;
+    for(Partida* partida : partidas){
+        cout<<partida->toString()<<endl;
+        cout<<"\t\t--------------------------------------"<<endl;
+    }
+    system("pause");
+}

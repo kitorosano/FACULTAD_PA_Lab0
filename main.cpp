@@ -98,6 +98,9 @@ int main() {
             case 4:
                 view->obtenerVideojuegosView(sistema);
                 break;
+            case 5:
+                view->obtenerPartidasView(sistema);
+                break;
             default:
                 cout<<"Opcion invalida"<<endl;
                 break;
