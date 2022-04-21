@@ -3,6 +3,7 @@
 
 #include "Sistema.h"
 #include "../partida/PartidaIndividual.h"
+#include "../partida/PartidaMultijugador.h"
 
 using namespace std;//
 
@@ -86,32 +87,32 @@ void Sistema::iniciarPartida(string nickname, string videojuego, Partida *datos)
     //VERIFICAR DATOS
     if (nickname.empty() || videojuego.empty())
         throw invalid_argument("Error: La partida no puede ser creada.");
-  
-  
+
     bool existeJugador = false;
+
     for (Jugador *jug: jugadores) {
         if (jug->getNickname() == nickname) {
             datos->setJugadorIniciador(*jug); //seteo jugador iniciador
             existeJugador = true;
         }
+    }
 
-        if (!existeJugador)
-            throw invalid_argument("Error: El jugador no existe.");
+    if (!existeJugador)
+        throw invalid_argument("Error: El jugador no existe.");
 
-        bool existeVideoJuego = false;
-        for (Videojuego *vid: videojuegos)
-            if (vid->getNombre() == videojuego) {
-                // SET TOTAL HORAS PARTICIPANTES
-                dtFechaHora* fechaHora = new dtFechaHora();
-            datos->setFecha(*fechaHora); //fecha de inicio
-
-            vid->guardarPartida(datos); // REGISTRAR PARTIDA
+    bool existeVideoJuego = false;
+    for (Videojuego *vid: videojuegos) {
+        if (vid->getNombre() == videojuego) {
+            dtFechaHora *fechaHora = new dtFechaHora();
+            datos->setFecha(*fechaHora);
+            vid->guardarPartida(datos);
             existeVideoJuego = true;
         }
-
-        if (!existeVideoJuego)
-            throw invalid_argument("Error: El videojuego no existe.");
     }
+
+    if (!existeVideoJuego)
+        throw invalid_argument("Error: El videojuego no existe.");
+
 }
 
 vector<Jugador*> Sistema::getJugadores() {
@@ -120,4 +121,14 @@ vector<Jugador*> Sistema::getJugadores() {
 
 vector<Videojuego*> Sistema::getVideojuegos() {
     return this->videojuegos;
+}
+
+Partida* Sistema::crearPartidaInd(float duracion, bool continuaPartidaAnterior){
+    Partida* partida = new PartidaIndividual(duracion, continuaPartidaAnterior);
+    return partida;
+}
+
+Partida* Sistema::crearPartidaMul(float duracion, bool transmitidaEnVivo, vector<Jugador*> jugadores){
+    Partida* partida = new PartidaMultijugador(duracion,transmitidaEnVivo,jugadores);
+    return partida;
 }

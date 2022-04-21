@@ -15,6 +15,7 @@ class View {
         void obtenerJugadoresView(Sistema* sistema);
         void obtenerVideojuegosView(Sistema* sistema);
         void obtenerPartidasView(Sistema* sistema);
+        void crear_e_IniciarPartidaView(Sistema *sistema);
 };
 
 

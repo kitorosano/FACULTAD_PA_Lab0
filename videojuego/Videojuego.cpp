@@ -19,7 +19,7 @@ string Videojuego::getGenero() {
     return TipoJuego_str[this->genero]; //CONSIDERAR CAMBIARLO POR UN SWITCH
 }
 
-long Videojuego::getTotalHorasJuego() {
+float Videojuego::getTotalHorasJuego() {
     return this->totalHorasJuego;
 }
 
@@ -44,7 +44,7 @@ void Videojuego::guardarPartida(Partida* partida) {
   this->partidas.push_back(partida);
 }
 
-void Videojuego::setTotalHorasJuego(long totalHorasJuego) {
+void Videojuego::setTotalHorasJuego(float totalHorasJuego) {
     this->totalHorasJuego = totalHorasJuego;
 }
 

@@ -19,6 +19,10 @@ class Util {
         bool verificarCantidadPartidas(Sistema* sistema,string videojuego, string cantVideojuegos);
         bool verificarVideojuego(Sistema* sistema, string videojuego);
         bool isInteger(string a);
+        bool isIntegerWM(string a);
+        bool verificarDuracion(string duracion); 
+        bool verificarOpcion(string tipoPartida);
+        bool verificarJugador(Sistema* sistema, string nickname);
 };
 
 

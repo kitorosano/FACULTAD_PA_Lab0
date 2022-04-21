@@ -1,8 +1,10 @@
 #include "View.h"
 #include "../util/Util.h"
 #include <iostream>
+#include <limits>
 
 void View::menu() {
+    system("cls");
     cout<<"|------------------------------------------------------|"<<endl;
     cout<<"|                 LABORATORIO  AVANZADA                |"<<endl;
     cout<<"|------------------------------------------------------|"<<endl;
@@ -23,6 +25,7 @@ void View::agregarJugadorView(Sistema* sistema) {
     string edad;
     string password;
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                   AGREGAR  JUGADOR                   |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -31,6 +34,7 @@ void View::agregarJugadorView(Sistema* sistema) {
         getline(cin, nickname);
     } while(!utilities->verificarNickname(sistema, nickname));
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                   AGREGAR  JUGADOR                   |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -38,6 +42,7 @@ void View::agregarJugadorView(Sistema* sistema) {
         cin>>edad;
     } while(!utilities->verificarEdad(edad));
     //De esta forma permito que la password sea por defecto 123456
+    system("cls");
     cout<<"|------------------------------------------------------|"<<endl;
     cout<<"|                   AGREGAR  JUGADOR                   |"<<endl;
     cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -45,6 +50,7 @@ void View::agregarJugadorView(Sistema* sistema) {
     cin.ignore();
     getline(cin, password);
     sistema->agregarJugador(nickname, stoi(edad), password);
+    system("cls");
     cout<<"|------------------------------------------------------|"<<endl;
     cout<<"|                   AGREGAR  JUGADOR                   |"<<endl;
     cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -57,6 +63,7 @@ void View::agregarVideojuegoView(Sistema *sistema) {
     string nombre;
     string genero;
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                 AGREGAR   VIDEOJUEGO                 |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -65,6 +72,7 @@ void View::agregarVideojuegoView(Sistema *sistema) {
         getline(cin, nombre);
     } while(!utilities->verificarNombre(sistema, nombre));
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                 AGREGAR   VIDEOJUEGO                 |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl;
@@ -106,6 +114,7 @@ void View::agregarVideojuegoView(Sistema *sistema) {
             sistema->agregarVideojuego(nombre, TipoJuego::Plataformas);
             break;
     }
+    system("cls");
     cout<<"|------------------------------------------------------|"<<endl;
     cout<<"|                 AGREGAR   VIDEOJUEGO                 |"<<endl;
     cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -118,6 +127,7 @@ void View::obtenerJugadoresView(Sistema* sistema){
     string cantidad;
     int cant = 0;
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                   OBTENER  JUGADORES                 |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -129,12 +139,13 @@ void View::obtenerJugadoresView(Sistema* sistema){
         cout<<"Ingrese la cantidad:";
         cin>>cantidad;
     } while(!utilities->verificarCantidadJugadores(sistema,cantidad));
+    system("cls");
     cout<<"|------------------------------------------------------|"<<endl;
     cout<<"|                   OBTENER  JUGADORES                 |"<<endl;
     cout<<"|------------------------------------------------------|"<<endl<<endl;
     cant = stoi(cantidad);
     for (Jugador* jugador : sistema->obtenerJugadores(cant)) {
-        cout<<jugador->toString()<<endl;
+        cout<<jugador->toString();
     }
     cout<<endl<<"|------------------------------------------------------|"<<endl<<endl;
     system("pause");
@@ -145,6 +156,7 @@ void View::obtenerVideojuegosView(Sistema* sistema){
     string cantidad;
     int cant = 0;
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                 OBTENER  VIDEOJUEGOS                 |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -156,6 +168,7 @@ void View::obtenerVideojuegosView(Sistema* sistema){
         cout<<"Ingrese la cantidad:";
         cin>>cantidad;
     } while(!utilities->verificarCantidadVideojuegos(sistema,cantidad));
+    system("cls");
     cout<<"|------------------------------------------------------|"<<endl;
     cout<<"|                 OBTENER  VIDEOJUEGOS                 |"<<endl;
     cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -173,6 +186,7 @@ void View::obtenerPartidasView(Sistema* sistema){
     string cantidad;
     int cant = 0;
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                 OBTENER   PARTIDAS                   |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -186,6 +200,7 @@ void View::obtenerPartidasView(Sistema* sistema){
         getline(cin, nombreVideojuego);
     } while(!utilities->verificarVideojuego(sistema, nombreVideojuego));
     do{
+        system("cls");
         cout<<"|------------------------------------------------------|"<<endl;
         cout<<"|                 OBTENER   PARTIDAS                   |"<<endl;
         cout<<"|------------------------------------------------------|"<<endl<<endl;
@@ -207,8 +222,163 @@ void View::obtenerPartidasView(Sistema* sistema){
     cout<<"\t"<<"Partidas: "<<endl;
     cout<<"\t\t--------------------------------------"<<endl;
     for(Partida* partida : partidas){
-        cout<<partida->toString()<<endl;
+        cout<<partida->toString();
         cout<<"\t\t--------------------------------------"<<endl;
     }
+    system("pause");
+}
+
+void View::crear_e_IniciarPartidaView(Sistema *sistema) {
+    Util *utilities = new Util();
+    string nombreVideojuego;
+    string nombreJugador;
+    string nombreJugadorIniciador;
+    string cantidad;
+    string duracion;
+    string tipoPartida;
+    cin.ignore(numeric_limits<size_t>::max(), '\n');
+    do {
+        system("cls");
+        cout << "|------------------------------------------------------|" << endl;
+        cout << "|                CREAR E INICIAR PARTIDA               |" << endl;
+        cout << "|------------------------------------------------------|" << endl << endl;
+        if (sistema->getVideojuegos().empty()) {
+            cout << "No hay videojuegos registrados." << endl << endl;
+            system("pause");
+            return;
+        }
+        if (sistema->getJugadores().empty()) {
+            cout << "No hay jugadores registrados." << endl << endl;
+            system("pause");
+            return;
+        }
+        cout << "Ingrese el nickname:";
+        cin.clear();
+        getline(cin, nombreJugadorIniciador);
+    }while (!utilities->verificarJugador(sistema, nombreJugadorIniciador));
+    do {
+        system("cls");
+        cout << "|------------------------------------------------------|" << endl;
+        cout << "|                CREAR E INICIAR PARTIDA               |" << endl;
+        cout << "|------------------------------------------------------|" << endl << endl;
+        cout<<"Ingrese el nombre del videojuego:";
+        cin.clear();
+        getline(cin, nombreVideojuego);
+        //cin>>nombreVideojuego;
+    }while (!utilities->verificarVideojuego(sistema, nombreVideojuego));
+
+    do{
+        system("cls");
+        cout << "|------------------------------------------------------|" << endl;
+        cout << "|                CREAR E INICIAR PARTIDA               |" << endl;
+        cout << "|------------------------------------------------------|" << endl << endl;
+        cout << "Ingrese duracion:";
+        cin>>duracion;
+    }while(!utilities->verificarDuracion(duracion));
+    do{
+        system("cls");
+        cout<<"|------------------------------------------------------|"<<endl;
+        cout<<"|                 CREAR E INICIAR PARTIDA              |"<<endl;
+        cout<<"|------------------------------------------------------|"<<endl;
+        cout<<"| 1. Individual                                        |"<<endl;
+        cout<<"| 2. Multijugador                                      |"<<endl;
+        cout<<"|------------------------------------------------------|"<<endl<<endl;
+        cout<<"Ingrese el tipo de partida:";
+        cin>>tipoPartida;
+    } while(!utilities->verificarOpcion(tipoPartida));
+    Partida* dato;
+    if(tipoPartida == "1"){
+        string continua;
+        bool continuaPartidaAnterior;
+        do {
+            system("cls");
+            cout<<"|------------------------------------------------------|"<<endl;
+            cout<<"|                 CREAR E INICIAR PARTIDA              |"<<endl;
+            cout<<"|------------------------------------------------------|"<<endl;
+            cout<<"| 1. Es una continuacion de una partida anterior       |"<<endl;
+            cout<<"| 2. No es una continuacion de una partida anterior    |"<<endl;
+            cout<<"|------------------------------------------------------|"<<endl<<endl;
+            cout << "Ingrese una opcion:";
+            cin >> continua;
+        }while(!utilities->verificarOpcion(continua));
+        if(continua == "1"){
+            continuaPartidaAnterior = true;
+        }else if(continua == "2"){
+            continuaPartidaAnterior = false;
+        }
+        dato = sistema->crearPartidaInd(stof(duracion), continuaPartidaAnterior);
+    } else if (tipoPartida == "2") {
+        string transmitida;
+        bool transmitidaEnVivo;
+        string agregarJugador;
+        vector<Jugador*> listaJugadores; // jugadores de la partida
+        for (Jugador *jug : sistema->getJugadores()) {
+            if (jug->getNickname() == nombreJugadorIniciador) {
+                listaJugadores.push_back(jug);
+            }
+        }
+        do {
+            system("cls");
+            cout<<"|------------------------------------------------------|"<<endl;
+            cout<<"|                 CREAR E INICIAR PARTIDA              |"<<endl;
+            cout<<"|------------------------------------------------------|"<<endl;
+            cout<<"| 1. La partida es transmitida en vivo                 |"<<endl;
+            cout<<"| 2. La partida no es transmitida en vivo              |"<<endl;
+            cout<<"|------------------------------------------------------|"<<endl<<endl;
+            cout << "Ingrese una opcion:";
+            cin >> transmitida;
+        }while(!utilities->verificarOpcion(transmitida));
+        if(transmitida == "1"){
+            transmitidaEnVivo = true;
+        }else if(transmitida == "2"){
+            transmitidaEnVivo = false;
+        }
+        do{
+            bool jugadorEnLista = false;
+            do {
+                system("cls");
+                cout << "|------------------------------------------------------|" << endl;
+                cout << "|                CREAR E INICIAR PARTIDA               |" << endl;
+                cout << "|------------------------------------------------------|" << endl << endl;
+                cout << "Ingrese el nickname de un jugador para la partida:";
+                cin.clear();
+                getline(cin, nombreJugador);
+                for (Jugador *jug : listaJugadores) {
+                    if (jug->getNickname() == nombreJugador) {
+                        cout<<endl<<"Error: Este jugador ya fue ingresado."<<endl;
+                        jugadorEnLista = true;
+                    }
+                }
+            } while ((!utilities->verificarJugador(sistema, nombreJugador)) || jugadorEnLista);
+
+            for (Jugador *jug : sistema->getJugadores()) {
+                if (jug->getNickname() == nombreJugador) {
+                    listaJugadores.push_back(jug);
+                }
+            }
+
+            do {
+                system("cls");
+                cout<<"|------------------------------------------------------|"<<endl;
+                cout<<"|                 CREAR E INICIAR PARTIDA              |"<<endl;
+                cout<<"|------------------------------------------------------|"<<endl;
+                cout<<"| 1. Agregar otro jugador                              |"<<endl;
+                cout<<"| 2. No agregar otro jugador                                        |"<<endl;
+                cout<<"|------------------------------------------------------|"<<endl<<endl;
+                cout<<"Ingrese una opcion:";
+                cin>>agregarJugador;
+            } while(!utilities->verificarOpcion(agregarJugador));
+
+        } while (stoi(agregarJugador) != 2);
+
+        dato = sistema->crearPartidaMul(stof(duracion), transmitidaEnVivo, listaJugadores);
+    }
+
+    sistema->iniciarPartida(nombreJugadorIniciador, nombreVideojuego, dato);
+    system("cls");
+    cout << "|------------------------------------------------------|" << endl;
+    cout << "|                CREAR E INICIAR PARTIDA               |" << endl;
+    cout << "|------------------------------------------------------|" << endl << endl;
+    cout<<"Partida agregada con exito!"<<endl<<endl;
     system("pause");
 }

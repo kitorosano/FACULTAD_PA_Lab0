@@ -29,6 +29,8 @@ class Sistema {
         void iniciarPartida(string nickname, string videojuego, Partida *datos);
         vector<Jugador*> getJugadores();
         vector<Videojuego*> getVideojuegos();
+        Partida* crearPartidaInd(float duracion, bool continuaPartidaAnterior);
+        Partida* crearPartidaMul(float duracion, bool transmitidaEnVivo, vector<Jugador*> jugadores);
 
 };
 

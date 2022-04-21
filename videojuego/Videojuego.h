@@ -14,7 +14,7 @@ class Videojuego {
     private:
         string nombre;
         TipoJuego genero;
-        long totalHorasJuego;
+        float totalHorasJuego;
         vector<Partida*> partidas;
         
     public:
@@ -24,14 +24,14 @@ class Videojuego {
         
         string getNombre();
         string getGenero();
-        long getTotalHorasJuego();
+        float getTotalHorasJuego();
         vector<Partida*> getPartidas();
         int getCantidadPartidas();
         
         void setNombre(string nombre);
         void setGenero(TipoJuego genero);
         void guardarPartida(Partida *partida);
-        void setTotalHorasJuego(long totalHorasJuego);
+        void setTotalHorasJuego(float totalHorasJuego);
 
         string toString();
 };

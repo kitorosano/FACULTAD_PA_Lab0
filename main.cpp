@@ -101,6 +101,9 @@ int main() {
             case 5:
                 view->obtenerPartidasView(sistema);
                 break;
+            case 6:
+                view->crear_e_IniciarPartidaView(sistema);
+                break;
             default:
                 cout<<"Opcion invalida"<<endl;
                 break;
