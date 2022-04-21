@@ -15,7 +15,7 @@ using namespace std;
 class PartidaMultijugador : public Partida {
     private:
         bool transmitidaEnVivo;
-        vector<Jugador *> jugadores;
+        vector<Jugador*> jugadores;
         
     public:
         PartidaMultijugador(float duracion, bool transmitidaEnVivo, vector<Jugador *> jugadores);
@@ -28,6 +28,7 @@ class PartidaMultijugador : public Partida {
 
         float darTotalHorasParticipantes() override;
 
+        string toString() override;
 };
 
 

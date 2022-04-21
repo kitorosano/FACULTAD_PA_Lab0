@@ -22,6 +22,7 @@ class Jugador {
         void setEdad(int edad);
         void setPassword(string password);
 
+        string toString();
 };
 
 

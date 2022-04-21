@@ -25,5 +25,6 @@ public:
 
     float darTotalHorasParticipantes();
 
+    string toString() override;
 };
 #endif //PA_LABORATORIO0_PARTIDAINDIVIDUAL_H

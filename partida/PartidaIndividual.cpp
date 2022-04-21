@@ -1,3 +1,4 @@
+#include <sstream>
 #include "PartidaIndividual.h"
 
 using namespace std;
@@ -8,7 +9,6 @@ PartidaIndividual::PartidaIndividual(const PartidaIndividual &orig) {}
 
 PartidaIndividual::PartidaIndividual(float duracion, bool continuaPartidaAnterior) : Partida(duracion) {
     this->continuaPartidaAnterior = continuaPartidaAnterior;
-    videojuego.setTotalHorasJuego(videojuego.getTotalHorasJuego() + this->darTotalHorasParticipantes());
 }
 
 PartidaIndividual::~PartidaIndividual() {}
@@ -23,4 +23,12 @@ void PartidaIndividual::setContinuaPartidaAnterior(bool continuaPartidaAnterior)
 
 float PartidaIndividual::darTotalHorasParticipantes() {
     return this->getDuracion();
+}
+
+string PartidaIndividual::toString() {
+    stringstream ss;
+    ss<<"\t\tTipo de partida: Individual"<<endl;
+    ss<<Partida::toString();
+    ss<<"\t\tContinuar partida: "<<(getContinuaPartidaAnterior() ? "Si" : "No")<<endl;
+    return ss.str();
 }

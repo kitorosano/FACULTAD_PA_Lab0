@@ -16,7 +16,6 @@ using namespace std;
 class Sistema {
 
     private:
-        vector<Partida*> partidas;
         vector<Jugador*> jugadores;
         vector<Videojuego*> videojuegos;
         
@@ -28,6 +27,10 @@ class Sistema {
         vector<Videojuego*> obtenerVideojuegos(int &cantVideojuegos);
         vector<Partida*> obtenerPartidas(string videojuego, int &cantPartidas);
         void iniciarPartida(string nickname, string videojuego, Partida *datos);
+        vector<Jugador*> getJugadores();
+        vector<Videojuego*> getVideojuegos();
+        Partida* crearPartidaInd(float duracion, bool continuaPartidaAnterior);
+        Partida* crearPartidaMul(float duracion, bool transmitidaEnVivo, vector<Jugador*> jugadores);
 
 };
 

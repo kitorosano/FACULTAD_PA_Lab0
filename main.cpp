@@ -2,59 +2,113 @@
 #include "partida/Partida.h"
 #include "jugador/Jugador.h"
 #include "videojuego/Videojuego.h"
-#include "datatypes/dtFechaHora.h"
 #include "sistema/Sistema.h"
-#include "partida/Partida.h"
 #include "partida/PartidaIndividual.h"
 #include "partida/PartidaMultijugador.h"
+#include "view/View.h"
+#include "util/Util.h"
 
 using namespace std;
 
 void testing(){
 
-    int cantJugadores = 0;
-    int cantVideojuegos = 0;
     auto *sistema = new Sistema();
 
+    //TEST JUGADORES
     sistema->agregarJugador("Juan", 21, "123456");
     sistema->agregarJugador("Pedro", 24, "123456");
     sistema->agregarJugador("Jose", 18, "123456");
     sistema->agregarJugador("Maria", 19, "123456");
-    vector<Jugador *> jugadores = sistema->obtenerJugadores(cantJugadores);
 
     //TEST VIDEOJUEGO
-    sistema->agregarVideojuego("Counter Strike: Global Offensive", TipoJuego::Disparos);
     sistema->agregarVideojuego("Fifa 22", TipoJuego::Deportes);
-    sistema->agregarVideojuego("Gran Turismo 5", TipoJuego::Disparos);
     sistema->agregarVideojuego("Mario Kart 8", TipoJuego::Disparos);
+    sistema->agregarVideojuego("Gran Turismo 5", TipoJuego::Disparos);
+    sistema->agregarVideojuego("Counter Strike: Global Offensive", TipoJuego::Disparos);
     sistema->agregarVideojuego("Super Mario Bros", TipoJuego::Aventura);
-    vector<Videojuego *> videojuegos = sistema->obtenerVideojuegos(cantVideojuegos);
-    
+    sistema->agregarVideojuego("Super Mario Bros 2", TipoJuego::Aventura);
+    sistema->agregarVideojuego("Super Mario Bros 3", TipoJuego::Aventura);
+    sistema->agregarVideojuego("Super Mario Bros 4", TipoJuego::Aventura);
+  
     // TEST PARTIDAS
+    int cantJugadores = 4;
+    vector<Jugador*> jugadores = sistema->obtenerJugadores(cantJugadores);
+  
+  
     Partida* partidaI = new PartidaIndividual(2.0, true);
     sistema->iniciarPartida("Juan", "Fifa 22",partidaI);
+
+    Partida* partidaI2 = new PartidaIndividual(2.0, false);
+    sistema->iniciarPartida("Juan", "Mario Kart 8",partidaI2);
   
     vector<Jugador*> jugadoresPartida = {jugadores[1], jugadores[3]};
     Partida* partidaM = new PartidaMultijugador(2.0, false, jugadoresPartida);
-    sistema->iniciarPartida("Juan", "Mario Kart8",partidaM);
+    sistema->iniciarPartida("Pedro", "Mario Kart 8",partidaM);
   
+    //TEST CONSOLA
+    int cantVideojuegos = 4;
+    vector<Videojuego *> videojuegos = sistema->obtenerVideojuegos(cantVideojuegos);
+    
     cout<<"Jugadores: "<<endl;
     for (Jugador* jugador : jugadores) {
-        cout<<"Nickname: "<<jugador->getNickname()<<" | Edad: "<<jugador->getEdad()<<" | Password: "<<jugador->getPassword()<<endl;
+        cout<<jugador->toString()<<endl;
     }
+    
     cout<<endl<<"Videojuegos: "<<endl;
+    cout<<"______________________________________________________"<<endl;
     for (Videojuego* videojuego : videojuegos) {
-        cout<<"Nombre: "<<videojuego->getNombre()<<" | Total horas de juego: "<<videojuego->getTotalHorasJuego()<<" | Genero: "<<videojuego->getGenero()<<endl;
+        cout<<videojuego->toString();
+        int cantPartidas = videojuego->getCantidadPartidas();
+        if(cantPartidas > 0){
+            cout<<"\t"<<"Partidas: "<<endl;
+            cout<<"\t\t--------------------------------------"<<endl;
+            for(Partida* partida : sistema->obtenerPartidas(videojuego->getNombre(), cantPartidas)) {
+                cout<<partida->toString();
+                cout<<"\t\t--------------------------------------"<<endl;
+            }
+        } else
+            cout<<"\t"<<"Partidas: Este juego aun no tiene partidas."<<endl;
+        cout<<"______________________________________________________"<<endl;
     }
-    cout<<endl;
-    cout<<cantJugadores<<endl;
-    cout<<cantVideojuegos<<endl;
 
 }
 
 int main() {
+    string opcion;
+    Sistema* sistema = new Sistema();
+    Util* utilities = new Util();
+    View* view = new View();
+    do {
+        do{
+            view->menu();
+            cin>>opcion;
+        } while(!utilities->isInteger(opcion));
+        switch(stoi(opcion)) {
+            case 0:
+                break;
+            case 1:
+                view->agregarJugadorView(sistema);
+                break;
+            case 2:
+                view->agregarVideojuegoView(sistema);
+                break;
+            case 3:
+                view->obtenerJugadoresView(sistema);
+                break;
+            case 4:
+                view->obtenerVideojuegosView(sistema);
+                break;
+            case 5:
+                view->obtenerPartidasView(sistema);
+                break;
+            case 6:
+                view->crear_e_IniciarPartidaView(sistema);
+                break;
+            default:
+                cout<<"Opcion invalida"<<endl;
+                break;
+        }
 
-  
-    testing();
+    } while(stoi(opcion) != 0);
     return 0;
 }

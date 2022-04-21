@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FACULTAD_PA_Lab0.iml" filepath="$PROJECT_DIR$/.idea/FACULTAD_PA_Lab0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FACULTAD_PA_Lab0-vectorPartidasEnVideoJuego.iml" filepath="$PROJECT_DIR$/.idea/FACULTAD_PA_Lab0-vectorPartidasEnVideoJuego.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FACULTAD_PA_Lab02.iml" filepath="$PROJECT_DIR$/.idea/FACULTAD_PA_Lab02.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PA_Laboratorio0.iml" filepath="$PROJECT_DIR$/.idea/PA_Laboratorio0.iml" />
     </modules>
   </component>
